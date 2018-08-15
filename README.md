@@ -1,5 +1,5 @@
 This is an updated version of https://github.com/freitass/todo.txt-vim that
-adds repeating TODO items. If you add 'every_N' to an item with a date,
+adds repeating TODO items. For this add 'every_N' to an item with a date,
 where N is the number of days after which the item is to be repeated.
 
 The new "process" command looks through all the items in your TODO list and
