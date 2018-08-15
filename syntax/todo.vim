@@ -50,18 +50,4 @@ highlight  default  link  TodoDate       PreProc
 highlight  default  link  TodoProject    Special
 highlight  default  link  TodoContext    Special
 
-if exists('g:todo_load_python') && g:todo_load_python
-    if has('python')
-        let b:curdir = expand('<sfile>:p:h')
-        let s:script_dir = b:curdir . "/python/"
-        execute "pyfile " . s:script_dir. "todo.py"
-    elseif has('python3')
-        let b:curdir = expand('<sfile>:p:h')
-        let s:script_dir = b:curdir . "/python/"
-        execute "py3file " . s:script_dir. "todo.py"
-    else
-        echom "Your version of vim has no python support. Overdue dates won't be highlighted"
-    endif
-endif
-
 let b:current_syntax = "todo"

@@ -56,6 +56,12 @@ nnoremap <script> <silent> <buffer> <localleader>X :call todo#txt#mark_all_as_do
 " Remove completed {{{2
 nnoremap <script> <silent> <buffer> <localleader>D :call todo#txt#remove_completed()<CR>
 
+" Processing:
+" * If it has a token "every_\d+ give it the priority (A) and copy it to
+" a date \d+ days in the future.
+" (requires the speeddating plugin).
+nnoremap <script> <silent> <buffer> <localleader>p :call todo#txt#process()<CR>
+
 " Folding {{{1
 " Options {{{2
 setlocal foldmethod=expr
