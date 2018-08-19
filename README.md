@@ -28,14 +28,8 @@ creates new ones as needed.
 
 ## Date:  
 * `<localleader>d`   Set current task's creation date to the current date  
-* `date<tab>`        (Insert mode) Insert the current date  
 
-## Mark as done:  
-* `<localleader>x`   Mark current task as done  
-* `<localleader>X`   Mark all tasks as done  
-* `<localleader>D`   Move completed tasks to done.txt  
-
-This plugin detects any text file with the name todo.txt or done.txt with an optional prefix that ends in a period (e.g. second.todo.txt, example.done.txt).
+This plugin detects any text file with the name todo.txt or done.txt with an optional prefix that ends in a period (e.g. second.todo.txt, example.done.txt). It also detects a text file named todo.md if you have todo.txt as a file in your vimwiki with markdown syntax.
 
 If you want the help installed, run ":helptags ~/.vim/doc" inside vim after having copied the files.
 Then you will be able to get the commands help with: `:h todo.txt`.
