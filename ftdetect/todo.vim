@@ -10,3 +10,6 @@ autocmd BufNewFile,BufRead *.[Tt]odo.txt set filetype=todo
 autocmd BufNewFile,BufRead [Dd]one.txt set filetype=todo
 autocmd BufNewFile,BufRead *.[Dd]one.txt set filetype=todo
 
+" Since I have todo.txt embedded in vimwiki (with markdown syntax) I want to
+" add todo.md as a recognized file.
+autocmd BufNewFile,BufRead todo.md set filetype=todo
