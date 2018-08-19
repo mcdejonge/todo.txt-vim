@@ -36,6 +36,7 @@ function! todo#txt#replace_date()
         return
     endif
     execute 's/^\(([a-zA-Z]) \)\?\(\d\{2,4\}-\d\{2\}-\d\{2\} \)\?/\1' . s:get_current_date() . ' /'
+    let date_pos = match(current_line, s:get_current_date())
 endfunction
 
 function! todo#txt#mark_as_done()

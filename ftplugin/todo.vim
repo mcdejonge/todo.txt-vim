@@ -42,19 +42,24 @@ nnoremap <script> <silent> <buffer> <localleader>c :call todo#txt#prioritize_add
 vnoremap <script> <silent> <buffer> <localleader>c :call todo#txt#prioritize_add('C')<CR>
 
 " Insert date {{{2
-inoremap <script> <silent> <buffer> date<Tab> <C-R>=strftime("%Y-%m-%d")<CR>
+" Disabled. It leads to really annoying behavior when typing the word "date"
+"inoremap <script> <silent> <buffer> date<Tab> <C-R>=strftime("%Y-%m-%d")<CR>
 nnoremap <script> <silent> <buffer> <localleader>d :call todo#txt#replace_date()<CR>
 vnoremap <script> <silent> <buffer> <localleader>d :call todo#txt#replace_date()<CR>
 
+" Everything having to do with marking as done is disabled. When something is
+" done, delete the line. I'm not a big fan of the original implementation of
+" this, where you mark something as done explicitly and THEN you have to
+" explicitly remove done lines.
 " Mark done {{{2
-nnoremap <script> <silent> <buffer> <localleader>x :call todo#txt#mark_as_done()<CR>
-vnoremap <script> <silent> <buffer> <localleader>x :call todo#txt#mark_as_done()<CR>
+"nnoremap <script> <silent> <buffer> <localleader>x :call todo#txt#mark_as_done()<CR>
+"vnoremap <script> <silent> <buffer> <localleader>x :call todo#txt#mark_as_done()<CR>
 
 " Mark all done {{{2
-nnoremap <script> <silent> <buffer> <localleader>X :call todo#txt#mark_all_as_done()<CR>
+"nnoremap <script> <silent> <buffer> <localleader>X :call todo#txt#mark_all_as_done()<CR>
 
 " Remove completed {{{2
-nnoremap <script> <silent> <buffer> <localleader>D :call todo#txt#remove_completed()<CR>
+"nnoremap <script> <silent> <buffer> <localleader>D :call todo#txt#remove_completed()<CR>
 
 " Processing:
 " * If it has a token "every_\d+ give it the priority (A) and copy it to
