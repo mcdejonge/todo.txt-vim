@@ -25,6 +25,7 @@ creates new ones as needed.
 * `<localleader>a`   Add the priority (A) to the current line  
 * `<localleader>b`   Add the priority (B) to the current line  
 * `<localleader>c`   Add the priority (C) to the current line  
+* `<localleader>x`   Remove the priority from the current line  
 
 ## Date:  
 * `<localleader>d`   Set current task's creation date to the current date  

@@ -41,6 +41,9 @@ vnoremap <script> <silent> <buffer> <localleader>b :call todo#txt#prioritize_add
 nnoremap <script> <silent> <buffer> <localleader>c :call todo#txt#prioritize_add('C')<CR>
 vnoremap <script> <silent> <buffer> <localleader>c :call todo#txt#prioritize_add('C')<CR>
 
+nnoremap <script> <silent> <buffer> <localleader>x :call todo#txt#deprioritize()<CR>
+vnoremap <script> <silent> <buffer> <localleader>x :call todo#txt#deprioritize()<CR>
+
 " Insert date {{{2
 " Disabled. It leads to really annoying behavior when typing the word "date"
 "inoremap <script> <silent> <buffer> date<Tab> <C-R>=strftime("%Y-%m-%d")<CR>

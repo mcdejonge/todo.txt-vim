@@ -39,6 +39,10 @@ function! todo#txt#replace_date()
     let date_pos = match(current_line, s:get_current_date())
 endfunction
 
+function! todo#txt#deprioritize()
+    call s:remove_priority()
+endfunction
+
 function! todo#txt#mark_as_done()
     call s:remove_priority()
     call todo#txt#prepend_date()

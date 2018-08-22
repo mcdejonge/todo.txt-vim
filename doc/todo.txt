@@ -33,6 +33,7 @@ CONTENTS                                                       *todo-contents*
 	`<localleader>a`   Add the priority (A) to the current line
 	`<localleader>b`   Add the priority (B) to the current line
 	`<localleader>c`   Add the priority (C) to the current line
+	`<localleader>x`   Remove the priority from the current line
 
 1.3 Date:                                                 *todo-commands-date*
 	`<localleader>d`   Set current task's creation date to the current date
