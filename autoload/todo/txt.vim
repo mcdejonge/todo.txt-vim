@@ -130,26 +130,31 @@ endfunction
 "   to a date \d+ days in the future.
 " * Requires the speeddating plugin to be installed.
 function! todo#txt#process()
+
+    :silent execute '%s/\s\s*/ /g'
+
     let today = strftime('%Y-%m-%d')
 
     " First we're going to update the time stamp for every line that has
     " a timestamp before today to today.
     :call map(filter(getline(1, '$'), 'v:val =~ "\\d\\d\\d\\d-\\d\\d-\\d\\d"'), 'todo#txt#process_update_timestamp(v:val, today)')
 
+    :silent execute '%s/\s\s*/ /g'
+
     " Loop through every line that matches the current date, check if it
     " contains an "every_" token and duplicate it, changing the date, if it
     " does.
     :call map(filter(filter(getline(1, '$'), 'v:val =~ "'. today . '"'), 'v:val =~ "\\vevery_\\d+"'), 'todo#txt#process_duplicate(v:val, today)')
 
+    :silent execute '%s/\s\s*/ /g'
+
     " Now that we've duplicated al lines for today and given the duplicates a 
     " new date set the priority of all lines with the current date "to 'A'.
     :call map(filter(getline(1, '$'), 'v:val =~ "'. today . '"'), 'todo#txt#process_prioritize(v:val, today)')
 
-    :sort
+    :sort u
+    execute 'normal!1G'
 
-    " Somewhere something sloppy is going on that adds extra spaces. Given the
-    " time, just fix it the ugly way.
-    :s/\s\s*/ /g
 
 endfunction
 
@@ -182,18 +187,23 @@ endfunction
 " param today:  the current date in YYYY-mm-dd . This saves having to calculate
 "               this for every line
 function! todo#txt#process_duplicate(line, today)
+    
+    :silent execute '%s/\s\s*/ /g'
+
     " First, find all instances of the requested line and delete them. This
     " is to avoid creating duplicates. At the end we will have ONE line for
     " today and ONE line for the next iteration
     let clean_line = substitute(a:line, a:today, '', '')
-    call map(filter(getline(1, '$'), 'v:val =~ "' . clean_line . '"'), 'todo#txt#process_delete_line(v:val)')
+    call map(filter(getline(1, '$'), 'v:val =~ "' . a:line . '"'), 'todo#txt#process_delete_line(v:val)')
     execute 'normal!Go' . a:today . ' ' . clean_line
     execute 'normal!yypk'
     execute 'normal!j^' 
     let increment = matchstr(a:line, '\vevery_\d+')
     let increment = substitute(increment, 'every_', '', '')
     let date_pos = match(a:line, a:today)
-    execute 'normal!' . date_pos . 'l5e'
+    " Move to the END of the date
+    let date_pos = date_pos + 9
+    execute 'normal!' . date_pos . 'l'
     call speeddating#increment(increment)
 
 endfunction
