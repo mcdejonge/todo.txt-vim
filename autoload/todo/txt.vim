@@ -148,8 +148,8 @@ function! todo#txt#process()
 
     :silent execute '%s/\s\s*/ /g'
 
-    " Now that we've duplicated al lines for today and given the duplicates a 
-    " new date set the priority of all lines with the current date "to 'A'.
+    "" Now that we've duplicated al lines for today and given the duplicates a 
+    "" new date set the priority of all lines with the current date "to 'A'.
     :call map(filter(getline(1, '$'), 'v:val =~ "'. today . '"'), 'todo#txt#process_prioritize(v:val, today)')
 
     :sort u
@@ -195,12 +195,16 @@ function! todo#txt#process_duplicate(line, today)
     " today and ONE line for the next iteration
     let clean_line = substitute(a:line, a:today, '', '')
     call map(filter(getline(1, '$'), 'v:val =~ "' . a:line . '"'), 'todo#txt#process_delete_line(v:val)')
+    " Add a line with the date of today and the clean line, that is to say the
+    " line without a date.
     execute 'normal!Go' . a:today . ' ' . clean_line
+    " Duplicate it.
     execute 'normal!yypk'
+    " Process the copy
     execute 'normal!j^' 
     let increment = matchstr(a:line, '\vevery_\d+')
     let increment = substitute(increment, 'every_', '', '')
-    let date_pos = match(a:line, a:today)
+    let date_pos = match(a:today . ' ' . clean_line , a:today)
     " Move to the END of the date
     let date_pos = date_pos + 9
     execute 'normal!' . date_pos . 'l'
